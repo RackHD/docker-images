@@ -1,0 +1,8 @@
+{
+  "client_addr": "0.0.0.0",
+  "server": false,
+  "datacenter": "docker",
+  "data_dir": "/var/consul",
+  "log_level": "DEBUG",
+  "enable_syslog": true,
+}

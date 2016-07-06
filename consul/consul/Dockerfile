@@ -17,4 +17,5 @@ RUN echo "${CONSUL_SHA256}  /tmp/consul.zip" > /tmp/consul.sha256 \
   && unzip /tmp/consul.zip \
   && chmod +x /bin/consul \
   && rm /tmp/consul.zip
+
 ENTRYPOINT ["/bin/consul"]
