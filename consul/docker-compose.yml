@@ -1,4 +1,4 @@
-# Here goes nothin'
+#Consul Cluster
 
 version: "2"
 
@@ -8,30 +8,54 @@ services:
     image: "skunkworxs/consul:latest"
     container_name: "consul1"
     hostname: "consul1"
+    volumes:
+      - "./server/config:/etc/consul.d"
     ports:
+      - "8300:8300"
+      - "8301:8301"
+      - "8301:8301/udp"
+      - "8302:8302"
+      - "8302:8302/udp"
       - "8400:8400"
       - "8500:8500"
       - "8600:8600"
-    command: "-server -bootstrap-expect 3 -ui-dir /ui"
+      - "8600:8600/udp"
+    command: "agent -config-dir /etc/consul.d -bootstrap-expect 3 -ui-dir /ui"
   consul2:
     image: "skunkworxs/consul:latest"
     container_name: "consul2"
     hostname: "consul2"
+    volumes:
+      - "./server/config:/etc/consul.d"
     expose:
+      - "8300"
+      - "8301"
+      - "8301/udp"
+      - "8302"
+      - "8302/udp"
       - "8400"
       - "8500"
       - "8600"
-    command: "-server -join consul1"
+      - "8600/udp"
+    command: "agent -config-dir /etc/consul.d -join consul1"
     depends_on:
       - consul1
   consul3:
     image: "skunkworxs/consul:latest"
     container_name: "consul3"
     hostname: "consul3"
+    volumes:
+      - "./server/config:/etc/consul.d"
     expose:
+      - "8300"
+      - "8301"
+      - "8301/udp"
+      - "8302"
+      - "8302/udp"
       - "8400"
       - "8500"
       - "8600"
-    command: "-server -join consul1"
+      - "8600/udp"
+    command: "agent -config-dir /etc/consul.d -join consul1"
     depends_on:
       - consul1
