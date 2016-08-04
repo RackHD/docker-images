@@ -1,3 +1,5 @@
 FROM skunkworxs/consul
 
-ENTRYPOINT ["/bin/consul"]
+ADD ./consulinit.sh /usr/bin/consulinit.sh
+
+ENTRYPOINT ["/usr/bin/consulinit.sh"]
