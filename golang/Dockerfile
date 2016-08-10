@@ -19,6 +19,7 @@ RUN set -x \
     && tar -xf /tmp/glide.tar.gz -C /tmp/ linux-amd64/glide \
     && cp /tmp/linux-amd64/glide /go/bin/ \
     && chmod +x /go/bin/glide \
+    && rm -rf /tmp/* \
     && apt-get purge -y --auto-remove ca-certificates wget \
     && apt-get clean \
     && rm -rf /var/lib/apt \
