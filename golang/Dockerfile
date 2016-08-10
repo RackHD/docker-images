@@ -1,7 +1,7 @@
-FROM golang:1.7-wheezy
+FROM golang:1.7rc6-wheezy
 
-RUN go get github.com/onsi/ginkgo/ginkgo
-RUN go get github.com/onsi/gomega
-RUN go get github.com/alecthomas/gometalinter
+RUN go get github.com/onsi/ginkgo/ginkgo && \
+    go get github.com/onsi/gomega && \
+    go get github.com/alecthomas/gometalinter
 
-RUN gometalinter --install --update
+RUN gometalinter --install
