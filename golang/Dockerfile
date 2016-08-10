@@ -15,7 +15,10 @@ RUN set -x \
     && go get github.com/onsi/gomega \
     && go get github.com/alecthomas/gometalinter \
     && gometalinter --install \
-    && go get github.com/Masterminds/glide \
+    && wget -O /tmp/glide.tar.gz "https://github.com/Masterminds/glide/releases/download/$GLIDE_VERSION/glide-$GLIDE_VERSION-linux-amd64.tar.gz" \
+    && tar -xf /tmp/glide.tar.gz -C /tmp/ linux-amd64/glide \
+    && cp /tmp/linux-amd64/glide /go/bin/ \
+    && chmod +x /go/bin/glide \
     && apt-get purge -y --auto-remove ca-certificates wget \
     && apt-get clean \
     && rm -rf /var/lib/apt \
