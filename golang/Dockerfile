@@ -15,12 +15,13 @@ RUN set -x \
     && go get github.com/onsi/gomega \
     && go get github.com/alecthomas/gometalinter \
     && gometalinter --install \
-    && wget -O /tmp/glide.tar.gz "https://github.com/Masterminds/glide/releases/download/$GLIDE_VERSION/glide-$GLIDE_VERSION-linux-amd64.tar.gz" \
-    && tar -xf /tmp/glide.tar.gz -C /tmp/ linux-amd64/glide \
-    && cp /tmp/linux-amd64/glide /go/bin/ \
+    && mkdir /tmp/glide \
+    && wget -O /tmp/glide/glide.tar.gz "https://github.com/Masterminds/glide/releases/download/$GLIDE_VERSION/glide-$GLIDE_VERSION-linux-amd64.tar.gz" \
+    && tar -xf /tmp/glide/glide.tar.gz -C /tmp/glide/ linux-amd64/glide \
+    && cp /tmp/glide/linux-amd64/glide /go/bin/ \
     && chmod +x /go/bin/glide \
-    && rm -rf /tmp/* \
-    && apt-get purge -y --auto-remove ca-certificates wget \
+    && rm -rf /tmp/glide/ \
+    && apt-get purge -y --auto-remove wget \
     && apt-get clean \
     && rm -rf /var/lib/apt \
     && chmod +x /usr/local/bin/entrypoint.sh
