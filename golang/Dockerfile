@@ -1,4 +1,4 @@
-FROM golang:1.7rc6-wheezy
+FROM golang:1.7.0-wheezy
 
 ENV GLIDE_VERSION v0.11.1
 
@@ -15,6 +15,4 @@ RUN set -x \
     && chmod +x /go/bin/glide \
     && rm -rf /tmp/glide/ \
     && apt-get purge -y --auto-remove wget \
-    && apt-get clean autolclean  \
-    && apt-get autoremove -y \
     && rm -rf /var/lib/{apt,dpkg,cache,log}
