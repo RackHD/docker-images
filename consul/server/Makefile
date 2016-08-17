@@ -1,4 +1,4 @@
 default: build
 
 build:
-	docker build -t skunkworxs/consulserver .
+	docker build -t skunkworxs/consul:server .
