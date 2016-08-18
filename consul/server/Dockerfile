@@ -1,4 +1,4 @@
-FROM rackhd/consul
+FROM rackhd/consul:base
 
 ADD ./config/server.json /etc/consul.d/server.json
 
