@@ -1,5 +1,5 @@
 APPLICATION = consul
-ORGANIZATION = skunkworxs
+ORGANIZATION = RackHD
 
 default: build
 
