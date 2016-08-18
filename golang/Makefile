@@ -2,4 +2,4 @@
 default: build
 
 build:
-	docker build -t skunkworxs/golang:1.7-wheezy .
+	docker build -t rackhd/golang:1.7.0-wheezy .
