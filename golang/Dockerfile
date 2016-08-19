@@ -7,6 +7,9 @@ RUN set -x \
     && go get github.com/onsi/ginkgo/ginkgo \
     && go get github.com/onsi/gomega \
     && go get github.com/alecthomas/gometalinter \
+    && go get github.com/mattn/goveralls \
+    && go get github.com/modocache/gover \
+    && go get golang.org/x/tools/cmd/cover \
     && gometalinter --install \
     && mkdir /tmp/glide \
     && wget -O /tmp/glide/glide.tar.gz "https://github.com/Masterminds/glide/releases/download/$GLIDE_VERSION/glide-$GLIDE_VERSION-linux-amd64.tar.gz" \
