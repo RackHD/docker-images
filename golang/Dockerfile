@@ -1,16 +1,11 @@
-FROM golang:1.8.0
+FROM golang:1.8.3-jessie
 
 ENV GLIDE_VERSION v0.12.3
-ENV PROTOC_VERSION 3.0.2
+ENV PROTOC_VERSION 3.3.0
 
 RUN set -x \
     && apt-get update && apt-get install -y --no-install-recommends ca-certificates wget unzip libpcap-dev && rm -rf /var/lib/apt/lists/* \
-    && go get github.com/onsi/ginkgo/ginkgo \
-    && go get github.com/onsi/gomega \
     && go get github.com/alecthomas/gometalinter \
-    && go get github.com/mattn/goveralls \
-    && go get github.com/modocache/gover \
-    && go get golang.org/x/tools/cmd/cover \
     && gometalinter --install \
     && mkdir /tmp/glide \
     && wget -O /tmp/glide/glide.tar.gz "https://github.com/Masterminds/glide/releases/download/$GLIDE_VERSION/glide-$GLIDE_VERSION-linux-amd64.tar.gz" \
@@ -23,7 +18,5 @@ RUN set -x \
     && unzip /tmp/protoc.zip -d /tmp/protoc \
     && cp /tmp/protoc/bin/protoc /go/bin/ \
     && rm -rf /tmp/protoc/ protoc.zip \
-    && go get -u github.com/golang/protobuf/protoc-gen-go \
-    && go get -u github.com/golang/protobuf/proto \
     && apt-get purge -y --auto-remove wget unzip \
     && rm -rf /var/lib/{apt,dpkg,cache,log}
