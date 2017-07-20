@@ -4,9 +4,11 @@ ENV GLIDE_VERSION v0.12.3
 ENV PROTOC_VERSION 3.3.0
 
 RUN set -x \
-    && apt-get update && apt-get install -y --no-install-recommends ca-certificates wget unzip libpcap-dev && rm -rf /var/lib/apt/lists/* \
+    && apt-get update && apt-get install -y --no-install-recommends ca-certificates wget unzip zip libpcap-dev && rm -rf /var/lib/apt/lists/* \
     && go get github.com/alecthomas/gometalinter \
     && gometalinter --install \
+    && wget -O /usr/local/bin/increment_version.sh "https://raw.githubusercontent.com/fmahnke/shell-semver/master/increment_version.sh" \
+    && chmod +x /usr/local/bin/increment_version.sh \
     && mkdir /tmp/glide \
     && wget -O /tmp/glide/glide.tar.gz "https://github.com/Masterminds/glide/releases/download/$GLIDE_VERSION/glide-$GLIDE_VERSION-linux-amd64.tar.gz" \
     && tar -xf /tmp/glide/glide.tar.gz -C /tmp/glide/ linux-amd64/glide \
