@@ -5,7 +5,7 @@ version: "2"
 services:
 
   consul1:
-    image: "skunkworxs/consul:server"
+    image: "rackhd/consul:server"
     container_name: "consul1"
     hostname: "consul1"
     volumes:
@@ -22,7 +22,7 @@ services:
       - "8600:8600/udp"
     command: "agent -config-dir /etc/consul.d -bootstrap-expect 3 -ui-dir /ui"
   consul2:
-    image: "skunkworxs/consul:server"
+    image: "rackhd/consul:server"
     container_name: "consul2"
     hostname: "consul2"
     volumes:
@@ -41,7 +41,7 @@ services:
     depends_on:
       - consul1
   consul3:
-    image: "skunkworxs/consul:server"
+    image: "rackhd/consul:server"
     container_name: "consul3"
     hostname: "consul3"
     volumes:
